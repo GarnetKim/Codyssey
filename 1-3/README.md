@@ -68,7 +68,7 @@ Hydrogen Peroxide,1.45,1.45,Very low,0.98
 ## File Structure
 ```
 project/
-├── 1-3.py                           # 메인 실행 파일
+├── 1-3 main.py                      # 메인 실행 파일
 ├── Mars_Base_Inventory_List.csv     # 입력 데이터 파일
 ├── Mars_Base_Inventory_danger.csv   # 생성되는 위험 물질 목록
 └── README.md                        # 프로젝트 문서

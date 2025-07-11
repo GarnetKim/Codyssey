@@ -21,7 +21,7 @@
 ```
 ├── mission_computer_main.log        # 분석 대상 로그 파일
 ├── mission_computer_main.json       # 정렬 및 변환된 로그 (JSON 포맷)
-├── analyzer.py                      # 메인 Python 코드
+├── 1-2 main.py                      # 메인 Python 코드
 └── README.md                        # 이 문서
 ```
 
