@@ -25,6 +25,7 @@ def sphere_area(diameter, material='유리', thickness=1):
     volume = area * thickness # 재료 부피 계산 (부피 cm³ = 면적 * 두께)
     density = material_density.get(material, 2.4) #밀도값 가져오기, material_density 딕셔너리에서 재료 이름에 맞는 밀도를 가져옴, 해당 재질이 없으면 기본값 2.4(유리)를 사용
     weight = volume * density * GRAVITY_CORRECTION / 1000 #무게 계산 (질량 = 부피 cm³ * 밀도 g/cm³), (무게 = 질량 * 중력 보정 / 1000), (/ 1000은 단위 변환 (g → kg))
+ 
     # 전역 변수에 결과 저장
     result['재질'] = material
     result['지름'] = diameter
@@ -52,22 +53,22 @@ def run_calculator():
                 continue
 
             thickness_input = input("두께를 입력하세요 (기본값 1cm): ").strip()
-            if thickness_input == '':
-                thickness = 1
+            if thickness_input == '': # 사용자가 두께를 입력하지 않으면
+                thickness = 1 # 기본값 1cm로 설정
             else:
-                thickness = float(thickness_input)
-                if thickness <= 0:
+                thickness = float(thickness_input) # 두께를 입력받아 실수형으로 변환
+                if thickness <= 0: # 두께가 0 이하인 경우
                     print("두께는 0보다 커야 합니다.")
                     continue
 
-            sphere_area(diameter, material, thickness)
+            sphere_area(diameter, material, thickness) # sphere_area 함수 호출하여 결과 출력
 
             again = input("계속 계산하시겠습니까? (y/n): ").strip().lower()
-            if again != 'y':
-                print("계산을 종료합니다.")
+            if again != 'y': # 사용자가 'y'를 입력하지 않으면
+                print("계산을 종료합니다.") # 계산 종료 메시지 출력
                 break
 
         except ValueError:
             print("숫자를 입력해야 합니다. 다시 시도해주세요.") # 예외 처리: 숫자가 아닌 값을 입력했을 때
 
-run_calculator()
+run_calculator() # run_calculator 함수 호출하여 계산 시작
