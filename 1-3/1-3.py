@@ -4,8 +4,8 @@
 # 인화성 지수가 0.7 이상되는 목록을 뽑아서 별도로 출력한다.
 # 인화성 지수가 0.7 이상되는 목록을 Mars_Base_Inventory_danger.csv로 저장한다.
 
-csv_filename = 'Mars_Base_Inventory_List.csv'  # 입력 파일 이름 설정
-danger_filename = 'Mars_Base_Inventory_danger.csv'  # 출력 파일 이름 설정 (위험 물질 목록)
+csv_filename = '1-3/Mars_Base_Inventory_List.csv'  # 입력 파일 이름 설정
+danger_filename = '1-3/Mars_Base_Inventory_danger.csv'  # 출력 파일 이름 설정 (위험 물질 목록)
 
 inventory_list = []  # 전체 화물 목록을 저장할 리스트
 header = []  # CSV 파일의 첫 줄 (열 제목)을 저장할 리스트
