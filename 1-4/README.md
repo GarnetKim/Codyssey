@@ -51,19 +51,13 @@ python3 design_dome.py
 ## 📐 수식 정보
 
 - 반구 면적 공식:  
-  \[
-    반구의 겉면적 = = 2 * π * r²/n
+    반구의 겉면적 = = 2 * π * r²
     3.141592는 파이(π)의 근삿값/n
-  \text{Area} = 2πr^2
-  \]
 
 - 무게 계산:  
-  \[
     무게 = 질량 * 중력 보정
     질량 = 부피 * 밀도
     부피 = 면적 * 두께
-  \text{Weight} = \text{Area} × \text{Thickness} × \text{Density} × 0.38
-  \]
 
 ---
 
