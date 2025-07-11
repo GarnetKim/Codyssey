@@ -35,7 +35,7 @@ def sphere_area(diameter, material='유리', thickness=1):
     print(f"재질 ⇒ {result['재질']}, 지름 ⇒ {result['지름']}m, 두께 ⇒ {result['두께']}cm, 면적 ⇒ {result['면적']}cm², 무게 ⇒ {result['무게']}kg")
 
 def run_calculator():
-    while True:
+    while True: # 사용자가 exit하거나 n을 입력하기 전까지 계속 계산을 반복
         try:
             material = input("재질을 입력하세요 (유리, 알루미늄, 탄소강): ").strip()
             if material not in material_density:
@@ -43,7 +43,7 @@ def run_calculator():
                 continue
 
             diameter_input = input("지름을 입력하세요 (m): ").strip()
-            if diameter_input.lower() == 'exit':
+            if diameter_input.lower() == 'exit': # 사용자가 'exit'를 입력하면 계산 종료 (.lower(): 문자열을 모두 소문자로 바꾸는 메서드)
                 print("계산을 종료합니다.")
                 break
             diameter = float(diameter_input)
@@ -68,6 +68,6 @@ def run_calculator():
                 break
 
         except ValueError:
-            print("숫자를 입력해야 합니다. 다시 시도해주세요.")
+            print("숫자를 입력해야 합니다. 다시 시도해주세요.") # 예외 처리: 숫자가 아닌 값을 입력했을 때
 
 run_calculator()
