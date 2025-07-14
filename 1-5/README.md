@@ -34,10 +34,10 @@
 pip install numpy
 ```
 
-2. `design_dome.py` 파일을 실행합니다.
+2. `1-5 design_dome.py` 파일을 실행합니다.
 
 ```bash
-python3 design_dome.py
+python3 1-5 design_dome.py
 ```
 
 3. 결과:
@@ -93,7 +93,7 @@ python3 design_dome.py
 
 | 파일명 | 설명 |
 |--------|------|
-| `design_dome.py` | 메인 분석 코드 |
+| `1-5 design_dome.py` | 메인 분석 코드 |
 | `mars_base_main_parts-001.csv` | 부품 목록 파일 1 |
 | `mars_base_main_parts-002.csv` | 부품 목록 파일 2 |
 | `mars_base_main_parts-003.csv` | 부품 목록 파일 3 |
