@@ -18,13 +18,15 @@ arr3 = np.genfromtxt('/Users/hailey/Desktop/Codyssey/1-5/mars_base_main_parts-00
                      delimiter=',', skip_header=1, dtype=None, encoding='utf-8')
 
 """
-np.loadtxt()는 CSV처럼 숫자로만 된 파일을 빠르게 불러올 수 있는 함수
-delimiter=','는 쉼표(,)로 데이터를 구분한다는 뜻
+np.genfromtxt() : 텍스트 파일(CSV 포함)을 배열로 읽어옴
+delimiter=',' : 쉼표 구분자 사용
+skip_header=1 : 첫 줄(헤더)을 건너뜀
+dtype=None : 자동으로 자료형 추론
+encoding='utf-8' : UTF-8 인코딩으로 읽음
 이렇게 불러오면 각 CSV 파일의 데이터가 ndarray 형식으로 저장됨
 
-파일에 헤더(첫 줄)이 있는 경우엔 skiprows=1 옵션을 넣어야 함
-- skiprows=0이면 → 'PartID', 'Strength'라는 문자열도 읽게 되므로 숫자형 데이터로 처리할 수 없어 오류 발생
-- skiprows=1이면 → 숫자 데이터만 정확히 불러올 수 있음
+np.genfromtxt()에서 skiprows는 지원하지 않는 키워드입니다.
+→ 대신 skip_header 를 사용해야 해요.
 """
 
 parts = np.concatenate((arr1, arr2, arr3)) 
@@ -81,3 +83,67 @@ parts_to_work_on 배열의 각 행에서 f0(id), f1(평균값)을 추출하여 �
 파일 저장 중 문제가 생기면 에러 메시지를 출력
 """
 
+# 보너스 문제
+""" 
+- parts_to_work_on.csv 파일을 다시 읽어들여서 출력하기
+- parts2의 내용을 기반으로 전치행렬을 구하고 그 내용을 parts3에 저장하고 출력한다.
+"""
+
+import numpy as np
+
+try:
+    parts2 = np.genfromtxt('parts_to_work_on.csv', delimiter=',', skip_header=1, dtype=None, encoding='utf-8')
+    print('parts2 내용:')
+    print(parts2)
+except Exception as e:
+    print(f"파일을 읽는 중 오류가 발생했습니다: {e}")
+
+"""
+np.genfromtxt() : 텍스트 파일(CSV 포함)을 배열로 읽어옴
+delimiter=',' : 쉼표 구분자 사용
+skip_header=1 : 첫 줄(헤더)을 건너뜀
+dtype=None : 자동으로 자료형 추론
+encoding='utf-8' : UTF-8 인코딩으로 읽음
+"""
+
+import numpy as np
+
+try:
+    # CSV 파일 읽기 (헤더 제외)
+    parts2 = np.genfromtxt('parts_to_work_on.csv', delimiter=',', skip_header=1, dtype=None, encoding='utf-8')
+    
+    # 부품 ID (문자열)와 수치 데이터 (숫자)가 섞여 있으므로 수치 데이터만 따로 추출
+    numeric_values = np.array([row[1] for row in parts2])
+
+    # 1차원 배열을 2차원 배열로 변환한 후 전치
+    numeric_matrix = numeric_values.reshape(1, -1)  # shape: (1, N)
+    parts3 = numeric_matrix.T  # 전치 후 shape: (N, 1)
+
+    print('전치행렬 parts3:')
+    print(parts3)
+
+except Exception as e:
+    print(f"오류 발생: {e}")
+
+"""
+row[1]: parts2에서 수치값(두 번째 열)만 추출
+.reshape(1, -1): 1행 N열 형태로 재구성
+.T: 전치행렬(행 ↔ 열 뒤바꿈)
+parts3: 전치된 ndarray 객체
+"""
+
+output_file = 'parts_transposed.csv'
+
+try:
+    # 파일로 저장
+    np.savetxt(output_file, parts3, delimiter=',', fmt='%.3f', encoding='utf-8')
+    print(f"전치행렬이 '{output_file}' 파일로 성공적으로 저장되었습니다.")
+except Exception as e:
+    print(f"파일 저장 중 오류가 발생했습니다: {e}")
+
+"""
+np.savetxt()는 단순한 수치 배열을 CSV 형식으로 저장할 때 유용함
+fmt='%.3f'는 소수점 아래 3자리까지 저장함
+encoding='utf-8'을 넣어서 한글 환경에서도 깨지지 않도록 함
+parts_transposed.csv 파일이 생성됨
+"""
