@@ -10,10 +10,12 @@
 """
 
 import numpy as np
-
-arr1 = np.loadtxt('mars_base_main_parts-001.csv', delimiter=',', skiprows=1)
-arr2 = np.loadtxt('mars_base_main_parts-002.csv', delimiter=',', skiprows=1)
-arr3 = np.loadtxt('mars_base_main_parts-003.csv', delimiter=',', skiprows=1)
+arr1 = np.genfromtxt('/Users/hailey/Desktop/Codyssey/1-5/mars_base_main_parts-001.csv',
+                     delimiter=',', skip_header=1, dtype=None, encoding='utf-8')
+arr2 = np.genfromtxt('/Users/hailey/Desktop/Codyssey/1-5/mars_base_main_parts-002.csv',
+                     delimiter=',', skip_header=1, dtype=None, encoding='utf-8')
+arr3 = np.genfromtxt('/Users/hailey/Desktop/Codyssey/1-5/mars_base_main_parts-003.csv',
+                     delimiter=',', skip_header=1, dtype=None, encoding='utf-8')
 
 """
 np.loadtxt()는 CSV처럼 숫자로만 된 파일을 빠르게 불러올 수 있는 함수
