@@ -25,8 +25,8 @@ dtype=None : 자동으로 자료형 추론
 encoding='utf-8' : UTF-8 인코딩으로 읽음
 이렇게 불러오면 각 CSV 파일의 데이터가 ndarray 형식으로 저장됨
 
-np.genfromtxt()에서 skiprows는 지원하지 않는 키워드입니다.
-→ 대신 skip_header 를 사용해야 해요.
+np.genfromtxt()에서 skiprows는 지원하지 않는 키워드
+→ 대신 skip_header 를 사용해야 함
 """
 
 parts = np.concatenate((arr1, arr2, arr3)) 
@@ -84,10 +84,8 @@ parts_to_work_on 배열의 각 행에서 f0(id), f1(평균값)을 추출하여 �
 """
 
 # 보너스 문제
-""" 
-- parts_to_work_on.csv 파일을 다시 읽어들여서 출력하기
-- parts2의 내용을 기반으로 전치행렬을 구하고 그 내용을 parts3에 저장하고 출력한다.
-"""
+# parts_to_work_on.csv 파일을 다시 읽어들여서 출력하기
+# parts2의 내용을 기반으로 전치행렬을 구하고 그 내용을 parts3에 저장하고 출력한다.
 
 import numpy as np
 
@@ -97,14 +95,6 @@ try:
     print(parts2)
 except Exception as e:
     print(f"파일을 읽는 중 오류가 발생했습니다: {e}")
-
-"""
-np.genfromtxt() : 텍스트 파일(CSV 포함)을 배열로 읽어옴
-delimiter=',' : 쉼표 구분자 사용
-skip_header=1 : 첫 줄(헤더)을 건너뜀
-dtype=None : 자동으로 자료형 추론
-encoding='utf-8' : UTF-8 인코딩으로 읽음
-"""
 
 import numpy as np
 
@@ -127,7 +117,7 @@ except Exception as e:
 
 """
 row[1]: parts2에서 수치값(두 번째 열)만 추출
-.reshape(1, -1): 1행 N열 형태로 재구성
+.reshape(1, -1): 1행 N열 형태로 재구성(-1은 열의 개수를 자동 계산하라는 의미, 즉 “1행 N열짜리 2차원 배열로 만들어줘!” 라는 뜻)
 .T: 전치행렬(행 ↔ 열 뒤바꿈)
 parts3: 전치된 ndarray 객체
 """
