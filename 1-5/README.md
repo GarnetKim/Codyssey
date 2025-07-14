@@ -93,11 +93,13 @@ python3 1-5 design_dome.py
 
 | 파일명 | 설명 |
 |--------|------|
-| `1-5 design_dome.py` | 메인 분석 코드 |
-| `mars_base_main_parts-001.csv` | 부품 목록 파일 1 |
-| `mars_base_main_parts-002.csv` | 부품 목록 파일 2 |
-| `mars_base_main_parts-003.csv` | 부품 목록 파일 3 |
-| `parts_to_work_on.csv` | 평균 이하 부품 목록 저장 파일 |
+| `1-5 design_dome.py` | 전체 분석 및 저장을 수행하는 메인 파이썬 코드 |
+| `mars_base_main_parts-001.csv` | 부품 데이터 파일 1 |
+| `mars_base_main_parts-002.csv` | 부품 데이터 파일 2 |
+| `mars_base_main_parts-003.csv` | 부품 데이터 파일 3 |
+| `parts_to_work_on.csv` | 평균값 50 미만의 부품 필터링 결과 |
+| `parts_transposed.csv` | `parts_to_work_on.csv`의 전치행렬 결과 |
+| `README.md` | 프로젝트 설명 파일 |
 
 ---
 
