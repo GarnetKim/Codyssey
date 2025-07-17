@@ -4,7 +4,7 @@ import json
 import time
 
 class DummySensor:
-    def __init__(self):
+    def __init__(self): #__init__()는 클래스가 초기화될 때 자동으로 실행되는 생성자 메소드, self는 앞으로 생성될 인스턴스
         self.env_values = {
             'mars_base_internal_temperature': 0.0,
             'mars_base_external_temperature': 0.0,
