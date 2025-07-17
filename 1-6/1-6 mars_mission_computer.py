@@ -19,7 +19,8 @@ class DummySensor:
          self.env_values['mars_base_external_illuminance'] = random.uniform(500, 715)
          self.env_values['mars_base_internal_co2'] = random.uniform(0.02, 0.1)
          self.env_values['mars_base_internal_oxygen'] = random.uniform(4, 7)
-
+        # uniform()은 파이썬의 random 모듈에서 제공하는 함수로, 두 수 사이에서 임의의 실수(float)를 균일한 확률로 하나 반환한다.
+        
     def get_env(self):
         now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         log_line = (
