@@ -33,14 +33,13 @@ class MissionComputer:
         self.sensor = DummySensor()
 
     def get_sensor_data(self):
+        ds = DummySensor()
         try:
             while True:
-                self.env_values = self.sensor.get_env()
-                now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                print(f'[{now}]')
-                print(json.dumps(self.env_values, indent=4, ensure_ascii=False))
-                print('-' * 40)
-                time.sleep(5)  # 5초마다 반복
+                ds.set_env()
+                self.env_values = ds.get_env()
+                print(json.dumps(self.env_values, indent=2, ensure_ascii=False)) #indent=2는 출력 시 가독성을 높이기 위해 들여쓰기를 적용, ensure_ascii=False는 한글이 깨지지 않도록 설정
+                time.sleep(5)  # sleep()함수란 time 모듈 안에 있는 코드 실행을 잠시 멈추는 함수. 5초마다 반복출력
         except KeyboardInterrupt:
             print("\n[종료] 센서 데이터 수집을 중단했습니다.")
 
@@ -49,3 +48,7 @@ class MissionComputer:
 if __name__ == '__main__':
     RunComputer = MissionComputer()
     RunComputer.get_sensor_data()
+
+    # 보너스 과제
+    # 특정 키를 입력할 경우 반복적으로 출력되던 화성 기지의 환경에 대한 출력을 멈추고 ‘Sytem stoped….’ 를 출력 할 수 있어야 한다.
+    # 5분에 한번씩 각 환경값에 대한 5분 평균 값을 별도로 출력한다.
