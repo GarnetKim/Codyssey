@@ -44,6 +44,7 @@ class MissionComputer:
                 time.sleep(5)
         except KeyboardInterrupt:
             print("\n[종료] 센서 데이터 수집을 중단했습니다.")
+
     # 미션 컴퓨터의 정보 가져오는 코드
     def get_mission_computer_info(self):
         info = {
@@ -55,6 +56,7 @@ class MissionComputer:
         }
         print(json.dumps(info, indent=4, ensure_ascii=False))
         return info
+    
     # 미션 컴퓨터의 부하를 가져오는 코드
     def get_mission_computer_load(self):
         load = {}
@@ -69,7 +71,7 @@ class MissionComputer:
             load['CPU 부하'] = '이 운영체제에서는 로드 평균을 지원하지 않습니다.'
 
         # 메모리 정보 (Darwin/macOS 한정)
-        if platform.system() == 'macOS':
+        if platform.system() == 'Darwin':
             try:
                 mem_bytes = int(os.popen("sysctl -n hw.memsize").read())
                 mem_gb = round(mem_bytes / (1024 ** 3), 2)
