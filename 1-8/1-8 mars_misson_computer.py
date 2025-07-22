@@ -69,21 +69,22 @@ class MissionComputer:
             load['CPU 실시간 사용량 (15분 평균)'] = load_avg[2]
         except (AttributeError, OSError):
             load['CPU 부하'] = '이 운영체제에서는 로드 평균을 지원하지 않습니다.'
+            
+        print(json.dumps(load, indent=4, ensure_ascii=False))
+        return load
 
         # 메모리 정보 (Darwin/macOS 한정)
+    def _get_memory_info(self):
         if platform.system() == 'Darwin':
             try:
                 mem_bytes = int(os.popen("sysctl -n hw.memsize").read())
                 mem_gb = round(mem_bytes / (1024 ** 3), 2)
-                load['총 메모리'] = f'{mem_gb} GB'
+                return f"{mem_gb} GB"
             except Exception:
-                load['총 메모리'] = '알 수 없음'
+                return "알 수 없음"
         else:
-            load['총 메모리'] = '알 수 없음'
+            return "알 수 없음"
 
-        print(json.dumps(load, indent=4, ensure_ascii=False))
-        return load
-  
 
 # 실행 부분
 if __name__ == '__main__':
