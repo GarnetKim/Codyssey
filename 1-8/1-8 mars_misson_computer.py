@@ -40,11 +40,12 @@ class MissionComputer:
             while True:
                 ds.set_env()
                 self.env_values = ds.get_env()
-                print(json.dumps(self.env_values, indent=2, ensure_ascii=False)) #indent=2는 출력 시 가독성을 높이기 위해 들여쓰기를 적용, ensure_ascii=False는 한글이 깨지지 않도록 설정
-                time.sleep(5)  # sleep()함수란 time 모듈 안에 있는 코드 실행을 잠시 멈추는 함수. 5초마다 반복출력
+                print(json.dumps(self.env_values, indent=2, ensure_ascii=False)) 
+                time.sleep(5)
         except KeyboardInterrupt:
             print("\n[종료] 센서 데이터 수집을 중단했습니다.")
-
+            
+    # 미션 컴퓨터의 정보 가져오는 코드
     def get_mission_computer_info(self):
         info = {
             '운영체계': platform.system(),
@@ -55,31 +56,34 @@ class MissionComputer:
         }
         print(json.dumps(info, indent=4, ensure_ascii=False))
         return info
-
+    
+    # 미션 컴퓨터의 부하를 가져오는 코드
     def get_mission_computer_load(self):
+        load = {}
+
+         # CPU 로드 평균
         try:
             load_avg = os.getloadavg()
-            load = {
-                'CPU 실시간 사용량 (1분 평균)': load_avg[0],
-                'CPU 실시간 사용량 (5분 평균)': load_avg[1],
-                'CPU 실시간 사용량 (15분 평균)': load_avg[2]
-            }
+            load['CPU 실시간 사용량 (1분 평균)'] = load_avg[0]
+            load['CPU 실시간 사용량 (5분 평균)'] = load_avg[1]
+            load['CPU 실시간 사용량 (15분 평균)'] = load_avg[2]
         except (AttributeError, OSError):
-            load = {'메시지': '이 운영체제에서는 로드 평균을 지원하지 않습니다.'}
-
-        print(json.dumps(load, indent=4, ensure_ascii=False))
-        return load
-
-    def _get_memory_info(self):
+            load['CPU 부하'] = '이 운영체제에서는 로드 평균을 지원하지 않습니다.'
+            
+        # 메모리 정보 (Darwin/macOS 한정)
         if platform.system() == 'Darwin':
             try:
                 mem_bytes = int(os.popen("sysctl -n hw.memsize").read())
                 mem_gb = round(mem_bytes / (1024 ** 3), 2)
-                return f"{mem_gb} GB"
+                load['총 메모리'] = f'{mem_gb} GB'
             except Exception:
-                return "알 수 없음"
+                load['총 메모리'] = '알 수 없음'
         else:
-            return "알 수 없음"
+            load['총 메모리'] = '알 수 없음'
+
+        print(json.dumps(load, indent=4, ensure_ascii=False))
+        return load
+  
 
 # 실행 부분
 if __name__ == '__main__':
