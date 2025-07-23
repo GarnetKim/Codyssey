@@ -4,6 +4,8 @@ import json
 import time
 import os
 import platform
+import psutil
+
 
 class DummySensor:
     def __init__(self):
