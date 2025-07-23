@@ -68,7 +68,7 @@ class MissionComputer:
         except Exception:
             load['CPU 부하'] = '로드 평균을 가져올 수 없습니다.'
 
-        if psutil:
+        if psutil: # “메모리 실시간 사용량”을 파이썬 기본 내장 기능만으로 확인하는 건 직접적으로는 어렵고 pustil 이라는 외부 라이브러리를 사용해야 합니다.
             try:
                 memory = psutil.virtual_memory()
                 load['메모리 실시간 사용량'] = f"{memory.percent}%"
