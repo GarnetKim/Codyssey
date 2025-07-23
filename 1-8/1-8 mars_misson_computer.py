@@ -60,16 +60,21 @@ class MissionComputer:
     # 미션 컴퓨터의 부하를 가져오는 코드
     def get_mission_computer_load(self):
         load = {}
-
-         # CPU 로드 평균
         try:
             load_avg = os.getloadavg()
             load['CPU 실시간 사용량 (1분 평균)'] = load_avg[0]
-            load['CPU 실시간 사용량 (5분 평균)'] = load_avg[1]
-            load['CPU 실시간 사용량 (15분 평균)'] = load_avg[2]
-        except (AttributeError, OSError):
-            load['CPU 부하'] = '이 운영체제에서는 로드 평균을 지원하지 않습니다.'
-            
+        except Exception:
+            load['CPU 부하'] = '로드 평균을 가져올 수 없습니다.'
+
+        if psutil:
+            try:
+                memory = psutil.virtual_memory()
+                load['메모리 실시간 사용량'] = f"{memory.percent}%"
+            except Exception:
+                load['메모리 실시간 사용량'] = '알 수 없음'
+        else:
+            load['메모리 실시간 사용량'] = 'psutil 미설치'
+
         print(json.dumps(load, indent=4, ensure_ascii=False))
         return load
 
