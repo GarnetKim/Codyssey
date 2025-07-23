@@ -7,8 +7,7 @@
 ## 📁 파일 구조
 
 ```
-mars_mission_computer.py      # 메인 실행 파일
-mission_env_log.txt           # 센서 로그 파일
+1-8 mars_mission_computer.py      # 메인 실행 파일
 README.md                     # 설명 문서 (이 파일)
 ```
 
@@ -26,14 +25,14 @@ README.md                     # 설명 문서 (이 파일)
 - 센서로부터 주기적으로 데이터를 수집하여 출력
 - `get_sensor_data()`: 5초마다 환경 데이터 출력
 - `get_mission_computer_info()`: 시스템 기본 정보 출력
-- `get_mission_computer_load()`: CPU 사용률, 시스템 부하 출력
+- `get_mission_computer_load()`: CPU 실시간 사용량, 메모리 실시간 사용량 출력
 
 ---
 
 ## 🖥️ 시스템 정보 항목
 
-- 운영체제
-- 운영체제 버전
+- 운영체계
+- 운영체계 버전
 - CPU 타입
 - CPU 코어 수
 - 메모리 크기
@@ -45,7 +44,7 @@ README.md                     # 설명 문서 (이 파일)
 ## ⏱️ 실행 방법
 
 ```bash
-python mars_mission_computer.py
+python 1-8 mars_mission_computer.py
 ```
 
 - 센서 데이터는 5초마다 자동 출력
@@ -58,20 +57,3 @@ python mars_mission_computer.py
 - 파이썬 기본 라이브러리만 사용 (단, 시스템 정보는 예외적으로 허용)
 - 모든 코드에는 예외 처리가 포함되어 있어야 함
 - 최신 안정 버전의 라이브러리만 사용
-
----
-
-## 📝 로그 파일
-
-센서 데이터를 호출할 때마다 `mission_env_log.txt`에 다음 형식으로 저장됩니다.
-
-```
-YYYY-MM-DD HH:MM:SS, 내부 온도, 외부 온도, 습도, 광량, CO2 농도, 산소 농도
-```
-
----
-
-## 📅 업데이트 내역
-
-- v1.0: DummySensor 및 MissionComputer 클래스 구현
-- v1.1: 시스템 정보 및 부하 측정 기능 추가
