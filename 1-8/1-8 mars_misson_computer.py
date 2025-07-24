@@ -30,7 +30,6 @@ class DummySensor:
         self.set_env()
         return self.env_values
 
-
 class MissionComputer:
     def __init__(self):
         self.env_values = {}
