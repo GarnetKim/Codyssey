@@ -26,6 +26,7 @@
 
 ## 📂 파일 구성
 
+```
 door_hacking/
 │
 ├── emergency_storage_key.zip      # 암호화된 ZIP 파일
@@ -34,6 +35,7 @@ door_hacking/
 ├── door_hacking_threaded.py       # 멀티스레딩 최적화 버전
 ├── password.txt                   # 성공 시 비밀번호 저장 파일
 └── README.md                      # 본 문서
+```
 
 ---
 
