@@ -23,12 +23,13 @@ def unlock_zip(zip_path='emergency_storage_key.zip'):
                     print(f"🔢 총 시도 횟수: {attempt_count}")
                     print(f"⏱️ 총 소요 시간: {round(elapsed, 2)}초")
 
-                    # 비밀번호 저장
+                    # 비밀번호 password.txt에 저장
                     with open("password.txt", "w", encoding="utf-8") as f:
                         f.write(password)
                     return password
 
                 except:
+                    # 해제 실패 시 다음 비밀번호 시도
                     if attempt_count % 10000 == 0:
                         print(f"시도 중... {attempt_count}회")
 
@@ -42,6 +43,7 @@ def unlock_zip(zip_path='emergency_storage_key.zip'):
     except Exception as e:
         print(f"⚠️ 오류 발생: {e}")
 
+# 실행
 if __name__ == '__main__':
     unlock_zip()
     
