@@ -9,10 +9,10 @@ zip_path = 'emergency_storage_key.zip'
 chars = string.ascii_lowercase + string.digits
 max_length = 6
 found = False
-password_queue = queue.Queue()
+password_queue = queue.Queue() # 비밀번호 작업을 담는 안전한 작업 큐
 
 # 암호를 시도하는 함수
-def worker():
+def worker(): #비밀번호를 하나씩 꺼내 시도하고 성공하면 종료 플래그 설정
     global found
     while not found:
         try:
@@ -34,16 +34,16 @@ def worker():
 
 def unlock_zip_threading(thread_count=8):
     start_time = time.time()
-    print("🚀 멀티스레딩으로 암호 해제 시도 중...")
+    print("멀티스레딩으로 암호 해제 시도 중...")
 
     # 비밀번호 후보 큐에 저장
-    for pwd_tuple in product(chars, repeat=max_length):
+    for pwd_tuple in product(chars, repeat=max_length): #6자리 비밀번호 생성기 (숫자+소문자)
         password_queue.put(''.join(pwd_tuple))
 
     # 스레드 실행
     threads = []
     for _ in range(thread_count):
-        t = threading.Thread(target=worker)
+        t = threading.Thread(target=worker) #병렬로 작업을 처리할 스레드
         t.start()
         threads.append(t)
 

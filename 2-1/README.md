@@ -29,12 +29,12 @@
 ```
 door_hacking/
 │
-├── emergency_storage_key.zip      # 암호화된 ZIP 파일
+├── README.md                      # 본 문서
 ├── door_hacking.py                # 기본 브루트포스 코드
 ├── door_hacking_fast.py           # 멀티프로세싱 최적화 버전
 ├── door_hacking_threaded.py       # 멀티스레딩 최적화 버전
-├── password.txt                   # 성공 시 비밀번호 저장 파일
-└── README.md                      # 본 문서
+├── emergency_storage_key.zip      # 암호화된 ZIP 파일
+└── password.txt                   # 성공 시 비밀번호 저장 파일
 ```
 
 ---
