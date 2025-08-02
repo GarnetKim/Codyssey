@@ -47,7 +47,7 @@ def unlock_zip(zip_path='emergency_storage_key.zip'):
 if __name__ == '__main__':
     unlock_zip()
     
-
+# 출력 결과
 # ✅ 비밀번호 해제 성공! → mars06
 # 🔢 총 시도 횟수: 726411561
 # ⏱️ 총 소요 시간: 52773.37초  
