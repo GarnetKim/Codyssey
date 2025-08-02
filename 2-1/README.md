@@ -79,3 +79,10 @@ python door_hacking_threaded.py
 - 실제 실행 시 thread_count 또는 processes 수는 시스템 코어 수에 맞게 조절 필요.
 
 ---
+
+## 출력 결과
+✅ 비밀번호 해제 성공! → mars06
+🔢 총 시도 횟수: 726411561
+⏱️ 총 소요 시간: 52773.37초
+
+---
