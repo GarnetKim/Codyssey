@@ -3,7 +3,7 @@ import string
 import time
 from itertools import product
 
-def unlock_zip(zip_path='emergency_storage_key.zip'):
+def unlock_zip(zip_path="/Users/hailey/Desktop/Codyssey/2-1/emergency_storage_key.zip"):
     chars = string.ascii_lowercase + string.digits  # 소문자 + 숫자
     max_length = 6
     start_time = time.time()
