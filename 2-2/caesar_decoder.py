@@ -12,10 +12,10 @@ def caesar_cipher_decode(target_text, shift):
 
 def read_password_file():
     try:
-        with open("password 2.txt", "r", encoding="utf-8") as f:
+        with open("password_2.txt", "r", encoding="utf-8") as f:
             return f.read().strip()
     except FileNotFoundError:
-        print("❌ 'password 2.txt' 파일을 찾을 수 없습니다.")
+        print("❌ 'password_2.txt' 파일을 찾을 수 없습니다.")
     except Exception as e:
         print(f"❌ 파일을 읽는 중 오류 발생: {e}")
     return None
