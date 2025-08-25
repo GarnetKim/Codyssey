@@ -89,9 +89,9 @@ class Calculator(QWidget):
 
         grid = QGridLayout()
         buttons = [
-            ["AC", "±", "%", "/"],
-            ["7", "8", "9", "*"],
-            ["4", "5", "6", "-"],
+            ["AC", "±", "%", "÷"],
+            ["7", "8", "9", "×"],
+            ["4", "5", "6", "−"],
             ["1", "2", "3", "+"],
             ["0", ".", "="]
         ]
@@ -111,7 +111,8 @@ class Calculator(QWidget):
                     grid.addWidget(btn, row, col)
                     col += 1
 
-                btn.setStyleSheet("font-size: 18px; border-radius: 30px;")
+                # 둥근 버튼 스타일 적용
+                btn.setStyleSheet(self.style_for_button(btn_text))
                 btn.clicked.connect(self.on_button_click)
             row += 1
 
