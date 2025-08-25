@@ -1,6 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QPushButton, QVBoxLayout, QLineEdit
-from PyQt5.QtCore import Qt
+from PyQt6.QtWidgets import QApplication, QWidget, QGridLayout, QPushButton, QVBoxLayout, QLineEdit
+from PyQt6.QtCore import Qt
 
 class Calculator(QWidget):
     def __init__(self):
@@ -14,7 +14,7 @@ class Calculator(QWidget):
 
         self.display = QLineEdit()
         self.display.setReadOnly(True)
-        self.display.setAlignment(Qt.AlignRight)
+        self.display.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.display.setFixedHeight(60)
         self.display.setStyleSheet("font-size: 24px; padding: 10px; border-radius: 10px;")
 
@@ -75,4 +75,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = Calculator()
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
