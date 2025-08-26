@@ -5,15 +5,6 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import Qt
 
-
-import sys
-from PyQt6.QtWidgets import (
-    QApplication, QWidget, QGridLayout, QPushButton,
-    QVBoxLayout, QLineEdit
-)
-from PyQt6.QtCore import Qt
-
-
 class Calculator(QWidget):
     def __init__(self):
         super().__init__()
