@@ -1,10 +1,6 @@
 import sys
-from PyQt6.QtWidgets import (
-    QApplication, QWidget, QGridLayout, QPushButton,
-    QVBoxLayout, QLineEdit
-)
+from PyQt6.QtWidgets import QApplication, QWidget, QGridLayout, QPushButton,QVBoxLayout, QLineEdit
 from PyQt6.QtCore import Qt
-
 
 class CalculatorEngine:
     def __init__(self):
@@ -74,26 +70,29 @@ class Calculator(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("iPhone 스타일 계산기")
-        self.setFixedSize(300, 400)
+        self.setFixedSize(360, 450)
         self.engine = CalculatorEngine()
         self.create_ui()
 
     def create_ui(self):
         layout = QVBoxLayout()
+
         self.display = QLineEdit()
         self.display.setReadOnly(True)
         self.display.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.display.setFixedHeight(60)
         self.display.setStyleSheet("font-size: 24px; padding: 10px; border-radius: 10px;")
+
         layout.addWidget(self.display)
 
         grid = QGridLayout()
+
         buttons = [
-            ["AC", "±", "%", "÷"],
+            ["⌫", "±", "%", "÷"],
             ["7", "8", "9", "×"],
             ["4", "5", "6", "−"],
             ["1", "2", "3", "+"],
-            ["0", ".", "="]
+            ["🙂", "0", ".", "="]
         ]
 
         row = 0
@@ -102,18 +101,11 @@ class Calculator(QWidget):
             for btn_text in row_values:
                 btn = QPushButton(btn_text)
                 btn.setFixedHeight(60)
-                if btn_text == "0":
-                    btn.setFixedWidth(130)
-                    grid.addWidget(btn, row, col, 1, 2)
-                    col += 2
-                else:
-                    btn.setFixedWidth(60)
-                    grid.addWidget(btn, row, col)
-                    col += 1
-
-                # 둥근 버튼 스타일 적용
+                btn.setFixedSize(70, 60)
                 btn.setStyleSheet(self.style_for_button(btn_text))
+                grid.addWidget(btn, row, col)
                 btn.clicked.connect(self.on_button_click)
+                col += 1
             row += 1
 
         layout.addLayout(grid)
@@ -121,10 +113,12 @@ class Calculator(QWidget):
         
     def style_for_button(self, text):
         base_style = "font-size: 18px; border-radius: 30px;"
-        if text in {"AC", "±", "%"}:
+        if text in {"⌫", "±", "%"}:
             return f"{base_style} background-color: lightgray;"
         elif text in {"÷", "×", "−", "+", "="}:
             return f"{base_style} background-color: orange; color: white;"
+        elif text == "🙂":
+            return f"{base_style} background-color: #555; color: white;"
         else:
             return f"{base_style} background-color: #333; color: white;"
         
@@ -144,7 +138,7 @@ class Calculator(QWidget):
         elif text == "=":
             result = self.engine.calculate()
             self.display.setText(result)
-        elif text == "AC":
+        elif text == "⌫":
             self.engine.reset()
             self.display.setText("")
         elif text == "±":
@@ -153,6 +147,8 @@ class Calculator(QWidget):
         elif text == "%":
             updated = self.engine.percent()
             self.display.setText(updated)
+        elif text == "🙂":
+            self.display.setText("🙂 Hello!")
 
 
 if __name__ == "__main__":
