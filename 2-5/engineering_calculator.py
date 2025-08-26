@@ -1,8 +1,5 @@
 import sys
-from PyQt6.QtWidgets import (
-    QApplication, QWidget, QGridLayout, QPushButton,
-    QVBoxLayout, QLineEdit
-)
+from PyQt6.QtWidgets import QApplication, QWidget, QGridLayout, QPushButton, QVBoxLayout, QLineEdit
 from PyQt6.QtCore import Qt
 
 class Calculator(QWidget):
@@ -60,7 +57,6 @@ class Calculator(QWidget):
         # 입력만 표시 (기능은 구현하지 않음)
         current = self.display.text()
         self.display.setText(current + text)
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
