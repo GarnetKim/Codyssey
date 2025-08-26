@@ -21,8 +21,14 @@ class Calculator(QWidget):
 
         grid = QGridLayout()
 
+        self.clear_or_back_btn = QPushButton("AC")
+        self.clear_or_back_btn.setFixedSize(50, 50)
+        self.clear_or_back_btn.setStyleSheet(self.style_for_button("AC"))
+        self.clear_or_back_btn.clicked.connect(self.on_clear_or_back_click)
+        grid.addWidget(self.clear_or_back_btn, 0, 6)    # (0, 6) 위치
+
         buttons = [
-            ["(", ")", "mc", "m+", "m−", "mr", "⌫", "±", "%", "÷"],
+            ["(", ")", "mc", "m+", "m−", "mr", None, "±", "%", "÷"],
             ["2ⁿ", "x²", "x³", "xʸ", "eˣ", "10ˣ", "7", "8", "9", "×"],
             ["1/x", "²√x", "³√x", "ʸ√x", "ln", "log₁₀", "4", "5", "6", "−"],
             ["x!", "sin", "cos", "tan", "e", "EE", "1", "2", "3", "+"],
@@ -31,6 +37,8 @@ class Calculator(QWidget):
 
         for row, row_values in enumerate(buttons):
             for col, btn_text in enumerate(row_values):
+                if btn_text is None:
+                    continue     # 동적 버튼 위치는 건너뜀
                 btn = QPushButton(btn_text)
                 btn.setFixedSize(50, 50)
                 btn.setStyleSheet(self.style_for_button(btn_text))
@@ -42,15 +50,27 @@ class Calculator(QWidget):
 
     def style_for_button(self, text):
         base_style = "font-size: 16px; border-radius: 20px; margin: 2px;"
-        if text in {"AC", "mc", "m+", "m−", "mr"}:
+        if text in {"mc", "m+", "m−", "mr"}:
             return f"{base_style} background-color: #333; color: white;"
-        elif text in {"⌫", "±", "%"}:
+        elif text in {"AC", "⌫", "±", "%"}:
             return f"{base_style} background-color: gray; color: white;"
         elif text in {"÷", "×", "−", "+", "="}:
             return f"{base_style} background-color: orange; color: white;"
         else:
             return f"{base_style} background-color: #333; color: white;"
 
+    def update_clear_or_back_label(self):
+        if self.display.text():
+            self.clear_or_back_btn.setText("⌫")
+        else:
+            self.clear_or_back_btn.setText("AC")
+
+    def on_clear_or_back_click(self):
+        if self.clear_or_back_btn.text() == "⌫":
+            self.display.setText(self.display.text()[:-1])
+        else:
+            self.display.setText("")
+            
     def on_button_click(self):
         btn = self.sender()
         text = btn.text()
