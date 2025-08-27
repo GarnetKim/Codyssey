@@ -9,10 +9,12 @@ from scipy.io.wavfile import write
 from datetime import datetime
 
 # 🔧 설정
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+RECORD_DIR = os.path.join(BASE_DIR, "records")
+
 RECORD_SECONDS = 5
 SAMPLE_RATE = 16000  # STT가 잘 되는 기본값
 CHANNELS = 1  # 반드시 모노 채널
-RECORD_DIR = "records"
 
 os.makedirs(RECORD_DIR, exist_ok=True)
 
