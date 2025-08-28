@@ -49,7 +49,7 @@ def draw_mars_map():
             ax.add_patch(square)
 
     ax.set_title('Mars Exploration Base Map', fontsize=15)
-    plt.savefig("mars_map.png")
+    plt.savefig("/Users/hailey/Desktop/개발/Codyssey/3-2/mars_map.png")
     plt.close()
 
 if __name__ == "__main__":
